@@ -91,6 +91,8 @@ components:
           type: string
         cell:
           type: string
+        registered:
+          $ref: "#/components/schemas/ProfileItem_registered"
         id:
           $ref: "#/components/schemas/ProfileItem_id"
         picture:
@@ -199,6 +201,16 @@ components:
           type: string
       example:
         name: name
+    ProfileItem_registered:
+      type: object
+      properties:
+        date:
+          type: string
+        age:
+          type: integer
+      example:
+        date: date
+        age: 0
     ProfileItem_picture:
       type: object
       properties:
