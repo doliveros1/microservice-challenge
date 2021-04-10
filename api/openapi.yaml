@@ -262,7 +262,7 @@ components:
         country:
           type: string
         postcode:
-          type: string
+          type: integer
         coordinates:
           $ref: "#/components/schemas/ProfileItem_location_coordinates"
         timezone:
