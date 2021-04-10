@@ -1,0 +1,278 @@
+openapi: 3.0.0
+info:
+  title: Front challenge API
+  description: Front challenge API
+  contact:
+    email: doliveros@minsait.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+  - url: https://virtserver.swaggerhub.com/doliveros82/Challenge/1.0.0
+    description: SwaggerHub API Auto Mocking
+tags:
+  - name: favorites
+    description: Favorite profiles
+paths:
+  /favorites/{nickname}:
+    get:
+      tags:
+        - favorites
+      summary: get favorite profiles by nickname
+      description: |
+        By passing a nickname return favorite profiles list
+      operationId: getFavoriteProfiles
+      parameters:
+        - name: nickname
+          in: path
+          description: Nickname
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ProfileItem"
+                x-content-type: application/json
+        "400":
+          description: bad input parameter
+        "404":
+          description: List by nickname not found
+      x-swagger-router-controller: Favorites
+    post:
+      tags:
+        - favorites
+      summary: get favorite profiles to nickname
+      description: Adds a list of favorite profiles list
+      operationId: addFavoriteProfiles
+      parameters:
+        - name: nickname
+          in: path
+          description: Nickname
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+      requestBody:
+        description: Inventory item to add
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/ProfileItem"
+      responses:
+        "201":
+          description: item created
+        "400":
+          description: "invalid input, object invalid"
+      x-swagger-router-controller: Favorites
+components:
+  schemas:
+    ProfileItem:
+      type: object
+      properties:
+        name:
+          $ref: "#/components/schemas/ProfileItem_name"
+        login:
+          $ref: "#/components/schemas/ProfileItem_login"
+        dob:
+          $ref: "#/components/schemas/ProfileItem_dob"
+        registered:
+          $ref: "#/components/schemas/ProfileItem_dob"
+        phone:
+          type: string
+        cell:
+          type: string
+        id:
+          $ref: "#/components/schemas/ProfileItem_id"
+        picture:
+          $ref: "#/components/schemas/ProfileItem_picture"
+        gender:
+          type: string
+        location:
+          $ref: "#/components/schemas/ProfileItem_location"
+        email:
+          type: string
+        nat:
+          type: string
+      example:
+        nat: nat
+        gender: gender
+        phone: phone
+        dob:
+          date: date
+          age: 0
+        name:
+          last: last
+          title: title
+          first: first
+        registered: null
+        location:
+          country: country
+          city: city
+          timezone:
+            offset: offset
+            description: description
+          street:
+            number: 6
+            name: name
+          postcode: postcode
+          coordinates:
+            latitude: latitude
+            longitude: longitude
+          state: state
+        id:
+          name: name
+        login:
+          sha1: sha1
+          password: password
+          salt: salt
+          sha256: sha256
+          uuid: uuid
+          md5: md5
+          username: username
+        cell: cell
+        picture:
+          thumbnail: thumbnail
+          large: large
+          medium: medium
+        email: email
+    ProfileItem_name:
+      type: object
+      properties:
+        first:
+          type: string
+        last:
+          type: string
+        title:
+          type: string
+      example:
+        last: last
+        title: title
+        first: first
+    ProfileItem_login:
+      type: object
+      properties:
+        md5:
+          type: string
+        sha1:
+          type: string
+        sha256:
+          type: string
+        uuid:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+        salt:
+          type: string
+      example:
+        sha1: sha1
+        password: password
+        salt: salt
+        sha256: sha256
+        uuid: uuid
+        md5: md5
+        username: username
+    ProfileItem_dob:
+      type: object
+      properties:
+        date:
+          type: string
+        age:
+          type: integer
+      example:
+        date: date
+        age: 0
+    ProfileItem_id:
+      type: object
+      properties:
+        name:
+          type: string
+      example:
+        name: name
+    ProfileItem_picture:
+      type: object
+      properties:
+        medium:
+          type: string
+        thumbnail:
+          type: string
+        large:
+          type: string
+      example:
+        thumbnail: thumbnail
+        large: large
+        medium: medium
+    ProfileItem_location_coordinates:
+      type: object
+      properties:
+        latitude:
+          type: string
+        longitude:
+          type: string
+      example:
+        latitude: latitude
+        longitude: longitude
+    ProfileItem_location_timezone:
+      type: object
+      properties:
+        description:
+          type: string
+        offset:
+          type: string
+      example:
+        offset: offset
+        description: description
+    ProfileItem_location_street:
+      type: object
+      properties:
+        number:
+          type: integer
+        name:
+          type: string
+      example:
+        number: 6
+        name: name
+    ProfileItem_location:
+      type: object
+      properties:
+        state:
+          type: string
+        country:
+          type: string
+        postcode:
+          type: string
+        coordinates:
+          $ref: "#/components/schemas/ProfileItem_location_coordinates"
+        timezone:
+          $ref: "#/components/schemas/ProfileItem_location_timezone"
+        street:
+          $ref: "#/components/schemas/ProfileItem_location_street"
+        city:
+          type: string
+      example:
+        country: country
+        city: city
+        timezone:
+          offset: offset
+          description: description
+        street:
+          number: 6
+          name: name
+        postcode: postcode
+        coordinates:
+          latitude: latitude
+          longitude: longitude
+        state: state
