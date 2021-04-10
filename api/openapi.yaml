@@ -9,7 +9,7 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   version: 1.0.0
 servers:
-  - url: https://virtserver.swaggerhub.com/doliveros82/Challenge/1.0.0
+  - url: http://localhost:8080
     description: SwaggerHub API Auto Mocking
 tags:
   - name: favorites
@@ -87,8 +87,6 @@ components:
           $ref: "#/components/schemas/ProfileItem_login"
         dob:
           $ref: "#/components/schemas/ProfileItem_dob"
-        registered:
-          $ref: "#/components/schemas/ProfileItem_dob"
         phone:
           type: string
         cell:
@@ -116,7 +114,6 @@ components:
           last: last
           title: title
           first: first
-        registered: null
         location:
           country: country
           city: city

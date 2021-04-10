@@ -9,7 +9,8 @@ module.exports.addFavoriteProfiles = function addFavoriteProfiles (req, res, nex
       utils.writeJson(res, response);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      let jsonResponse = JSON.parse(response);
+      utils.writeJson(res, response, jsonResponse["error"]);
     });
 };
 
@@ -19,6 +20,7 @@ module.exports.getFavoriteProfiles = function getFavoriteProfiles (req, res, nex
       utils.writeJson(res, response);
     })
     .catch(function (response) {
-      utils.writeJson(res, response);
+      let jsonResponse = JSON.parse(response);
+      utils.writeJson(res, response, jsonResponse["error"]);
     });
 };

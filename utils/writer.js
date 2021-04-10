@@ -41,3 +41,10 @@ var writeJson = exports.writeJson = function(response, arg1, arg2) {
   response.writeHead(code, {'Content-Type': 'application/json'});
   response.end(payload);
 }
+
+var errorJson = exports.errorJson = function(httpError,message){
+  var json = {};
+  json["error"] = httpError;
+  json["message"] = message;
+  return JSON.stringify(json);
+}
