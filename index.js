@@ -1,10 +1,11 @@
 'use strict';
 
+var cors = require('cors')
 var path = require('path');
 var http = require('http');
 
 var oas3Tools = require('oas3-tools');
-var serverPort = 8080;
+var serverPort = process.env.PORT || 8080;
 
 // swaggerRouter configuration
 var options = {
@@ -15,6 +16,7 @@ var options = {
 
 var expressAppConfig = oas3Tools.expressAppConfig(path.join(__dirname, 'api/openapi.yaml'), options);
 var app = expressAppConfig.getApp();
+app.use(cors());
 
 // Initialize the Swagger middleware
 http.createServer(app).listen(serverPort, function () {
