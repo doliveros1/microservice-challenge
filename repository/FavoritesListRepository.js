@@ -20,8 +20,10 @@ exports.get = function (nickname) {
 exports.add = function (nickname, favoritesList) {
   return new Promise(function (resolve, reject) {
     try {
-      if (favoritesList.length > 0) {
+      if (Array.isArray(favoritesList)) {
         CacheDataSource.addFavoriteList(nickname, favoritesList)
+      } else {
+        CacheDataSource.addFavoriteList(favoritesList, [])
       }
       resolve()
     } catch (error) {
